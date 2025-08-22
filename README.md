@@ -52,7 +52,7 @@
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/your-username/FiscalLens.git
+    git clone https://github.com/Rishiojha06/FiscalLens.git
     cd FiscalLens
     ```
 
