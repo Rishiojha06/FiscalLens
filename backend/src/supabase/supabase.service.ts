@@ -6,10 +6,10 @@ import { ConfigService } from '@nestjs/config';
 export class SupabaseService {
   private supabase: SupabaseClient;
 
-  constructor(private configServive: ConfigService) {
+  constructor(private configService:ConfigService) {
     this.supabase = createClient(
-      this.configServive.getOrThrow<string>('SUPABASE_URL'),
-      this.configServive.getOrThrow<string>('SUPABASE_SERVICE_ROLE_KEY'),
+      this.configService.getOrThrow<string>('SUPABASE_URL'),
+      this.configService.getOrThrow<string>('SUPABASE_SERVICE_ROLE_KEY'),
     );
   }
 
