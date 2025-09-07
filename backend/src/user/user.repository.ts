@@ -3,6 +3,7 @@ import { User } from "./user.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "./dtos/create-user.dto";
+import { UpdateUserDto } from "./dtos/update-user.dto";
 
 @Injectable()
 export class UserRepository {
@@ -41,5 +42,17 @@ export class UserRepository {
   async getAllUsers(): Promise<User[]> {
     return await this.userRepository.find();
   }
+
+  async getUserByUserId(user_id: string): Promise<User> {
+    return await this.userRepository.findOneOrFail({where:{user_id}});
+  }
   
+  async updateUser(context: {updateUserDto: UpdateUserDto, user_id: string}): Promise<User> {
+    const {updateUserDto, user_id} = context;
+    const user = await this.getUserByUserId(user_id);
+    if(!user) throw new Error(`User does not exist for user Id: ${user_id}`);
+
+    const updatedUser = this.userRepository.merge(user, updateUserDto);
+    return await this.userRepository.save(updatedUser);
+  }
 }
