@@ -16,10 +16,8 @@ export class UserController {
 @Get(':identifier')
 async findUserById(@Param('identifier') identifier: string): Promise<User> {
     if (identifier.startsWith('USR')) {
-        console.log(`Searching by user_id: ${identifier}`);
         return this.userService.getUserByUserId(identifier);
     } else {
-        console.log(`Searching by id: ${identifier}`);
         return this.userService.findUserByIdOrThow(identifier);
     }
 }

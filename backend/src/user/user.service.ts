@@ -22,7 +22,6 @@ export class UserService {
     }
     
     async getUserByUserId(user_id: string): Promise<User> {
-        console.log(`S - User ID: ${user_id}`)
         return await this.userRepository.getUserByUserId(user_id);
     }
 
