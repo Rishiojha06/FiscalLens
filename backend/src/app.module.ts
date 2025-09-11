@@ -6,6 +6,7 @@ import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { ExpenseModule } from './expense/expense.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       autoLoadEntities: true,
       synchronize: false,
     }),
+    ExpenseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
