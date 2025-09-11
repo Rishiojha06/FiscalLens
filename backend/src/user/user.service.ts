@@ -20,12 +20,8 @@ export class UserService {
     async createUser(createUser: CreateUserDto): Promise<User> {
         return await this.userRepository.createUser(createUser);
     }
-    
-    async getUserByUserId(user_id: string): Promise<User> {
-        return await this.userRepository.getUserByUserId(user_id);
-    }
 
-    async updateUser(context: {updateUserDto: UpdateUserDto, user_id: string}): Promise<User> {
+    async updateUser(context: {updateUserDto: UpdateUserDto, id: string}): Promise<User> {
         return await this.userRepository.updateUser(context);
     }
 }
