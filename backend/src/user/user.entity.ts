@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, Index } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, Index, ManyToOne, OneToMany, JoinColumn } from "typeorm";
 import { IsEmail, Validate } from "class-validator";
+import { Expense } from "src/expense/expense.entity";
 
 @Entity()
 export class User{
@@ -16,4 +17,7 @@ export class User{
     @Column({unique: true})
     @IsEmail({}, {message: "Invalid Email format"})
     email: string;
+
+    @OneToMany(() => Expense, expense => expense.userId)
+    expenses: Expense[];
 }
